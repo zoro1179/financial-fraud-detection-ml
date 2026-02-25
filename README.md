@@ -1,224 +1,190 @@
-FRAUD TRANSACTION DETECTION – MACHINE LEARNING CASE STUDY
-Project Overview
+# FRAUD TRANSACTION DETECTION – MACHINE LEARNING CASE STUDY
+
+## Project Overview
 
 This project focuses on building a fraud detection model for a financial company using a dataset containing 6,362,620 transactions and 10 features.
 
 The objective is to proactively detect fraudulent transactions and provide actionable business recommendations to reduce fraud losses.
 
-The solution includes:
+The solution includes
 
-Data cleaning and preprocessing
+- Data cleaning and preprocessing
+- Feature engineering
+- Handling class imbalance
+- Model development and evaluation
+- Business interpretation
+- Fraud prevention strategy
 
-Feature engineering
-
-Handling class imbalance
-
-Model development and evaluation
-
-Business interpretation
-
-Fraud prevention strategy
-
-Business Problem
+## Business Problem
 
 Financial fraud causes significant monetary loss and reduces customer trust.
 
-The goal of this project is to:
+The goal of this project is to
 
-Predict fraudulent transactions
+- Predict fraudulent transactions
+- Identify key factors driving fraud
+- Provide infrastructure-level prevention strategies
+- Evaluate the effectiveness of implemented actions
 
-Identify key factors driving fraud
+## Dataset Information
 
-Provide infrastructure-level prevention strategies
+Rows 6,362,620
+Columns 10
+Target Variable isFraud
+Problem Type Binary Classification
+Class Imbalance Highly imbalanced, fraud less than 1 percent
 
-Evaluate the effectiveness of implemented actions
+## Data Cleaning and Preprocessing
 
-Dataset Information
+Missing Values
+- No significant missing values detected
+- Verified using isnull().sum()
 
-Rows: 6,362,620
+Outlier Handling
+- Extreme transaction amounts were analyzed
+- Log transformation applied to reduce skewness
+- Outliers were not removed as they are important fraud indicators
 
-Columns: 10
+Multicollinearity
+- Correlation heatmap analyzed
+- Highly correlated redundant features reviewed
+- Domain-based feature selection applied
 
-Target Variable: isFraud
+## Feature Engineering
 
-Problem Type: Binary Classification
+Additional features created
 
-Class Imbalance: Highly imbalanced (fraud < 1 percent)
+- Balance difference before and after transaction
+- Transaction type encoding
+- Log-transformed transaction amount
 
-Data Cleaning and Preprocessing
+Categorical variables were encoded using one-hot encoding
 
-Missing Values:
+## Handling Class Imbalance
 
-No significant missing values detected.
+Fraud cases represented less than 1 percent of total data
 
-Verified using isnull().sum().
+Techniques applied
 
-Outlier Handling:
+- Class weighting using balanced class weights
+- Evaluation focused on recall and ROC-AUC instead of accuracy
 
-Extreme transaction amounts were analyzed.
+## Model Development
 
-Log transformation applied to reduce skewness.
+Models Considered
+- Logistic Regression baseline
+- Random Forest final model
+- XGBoost optional improvement
 
-Outliers were not removed as they are important fraud indicators.
+Final Model Used Random Forest Classifier
 
-Multicollinearity:
+Reasons
 
-Correlation heatmap analyzed.
+- Handles non-linearity
+- Robust to noise
+- Performs well on tabular fraud datasets
+- Provides feature importance insights
 
-Highly correlated redundant features reviewed.
+## Model Evaluation
 
-Domain-based feature selection applied.
+Accuracy is not reliable due to data imbalance
 
-Feature Engineering
+Metrics Used
 
-Additional features created:
+- Confusion Matrix
+- Precision
+- Recall
+- F1-Score
+- ROC-AUC Score
 
-Balance difference before and after transaction
+Key Focus
 
-Transaction type encoding
+- High recall for fraud detection to minimize missed fraud
+- Balanced precision to avoid false alarms
 
-Log-transformed transaction amount
+## Key Fraud Predictors
 
-Categorical variables were encoded using one-hot encoding.
+Top important features identified
 
-Handling Class Imbalance
+- Transaction amount
+- Balance difference
+- Transfer transaction type
+- Withdrawal indicator
+- Sudden balance drop
 
-Fraud cases represented less than 1 percent of total data.
+## Business Interpretation
 
-Techniques applied:
+These factors make sense because fraudsters typically
 
-Class weighting using balanced class weights
+- Transfer large amounts quickly
+- Empty accounts in a single transaction
+- Exploit transfer and payment channels
+- Perform rapid balance draining
 
-Evaluation focused on recall and ROC-AUC instead of accuracy
+These patterns align with real-world banking fraud scenarios
 
-Model Development
+## Recommended Fraud Prevention Strategy
 
-Models Considered:
+Technical Controls
 
-Logistic Regression (baseline)
+- Real-time fraud scoring system
+- High-risk transaction alerts
+- Two-factor authentication for high-value transactions
+- Transaction velocity monitoring
+- Temporary hold on suspicious transfers
 
-Random Forest (final model)
+Policy Controls
 
-XGBoost (optional improvement)
+- Daily transaction limits
+- Behavioral analytics monitoring
+- Automated account blocking for repeated suspicious activity
 
-Final Model Used: Random Forest Classifier
+## Measuring Success
 
-Reasons:
+To evaluate effectiveness
 
-Handles non-linearity
+Key Metrics
 
-Robust to noise
+- Fraud detection rate
+- Reduction in fraud losses
+- False positive rate
+- Customer complaint rate
+- Chargeback reduction
 
-Performs well on tabular fraud datasets
+Suggested Approach
 
-Provides feature importance insights
+- A/B testing on fraud detection system
+- Compare fraud rate before and after deployment
 
-Model Evaluation
+## Tools and Technologies Used
 
-Accuracy is not reliable due to data imbalance.
+- Python
+- Pandas
+- NumPy
+- Matplotlib and Seaborn
+- Scikit-learn
+- XGBoost optional
+- Jupyter Notebook
 
-Metrics Used:
+## Project Structure
 
-Confusion Matrix
+Fraud-Detection
+    data
+    notebooks
+        Fraud_Detection_Model.ipynb
+    README.md
+    requirements.txt
 
-Precision
+## Conclusion
 
-Recall
+The developed fraud detection model successfully identifies high-risk transactions using transaction behavior patterns and balance inconsistencies.
 
-F1-Score
+This solution provides predictive performance as well as actionable business recommendations.
 
-ROC-AUC Score
+It enables proactive fraud monitoring, reduces financial losses, and strengthens customer trust
 
-Key Focus:
+## Author
 
-High recall for fraud detection to minimize missed fraud
-
-Balanced precision to avoid false alarms
-
-Key Fraud Predictors
-
-Top important features identified:
-
-Transaction amount
-
-Balance difference
-
-Transfer transaction type
-
-Withdrawal indicator
-
-Sudden balance drop
-
-Business Interpretation
-
-These factors make sense because fraudsters typically:
-
-Transfer large amounts quickly
-
-Empty accounts in a single transaction
-
-Exploit transfer and payment channels
-
-Perform rapid balance draining
-
-These patterns align with real-world banking fraud scenarios.
-
-Recommended Fraud Prevention Strategy
-
-Technical Controls:
-
-Real-time fraud scoring system
-
-High-risk transaction alerts
-
-Two-factor authentication for high-value transactions
-
-Transaction velocity monitoring
-
-Temporary hold on suspicious transfers
-
-Policy Controls:
-
-Daily transaction limits
-
-Behavioral analytics monitoring
-
-Automated account blocking for repeated suspicious activity
-
-Measuring Success
-
-To evaluate effectiveness:
-
-Key Metrics:
-
-Fraud detection rate
-
-Reduction in fraud losses
-
-False positive rate
-
-Customer complaint rate
-
-Chargeback reduction
-
-Suggested Approach:
-
-A/B testing on fraud detection system
-
-Compare fraud rate before and after deployment
-
-Tools and Technologies Used
-
-Python
-
-Pandas
-
-NumPy
-
-Matplotlib and Seaborn
-
-Scikit-learn
-
-XGBoost (optional)
-
-Jupyter Notebook
+Your Name
+ 3rd year Student
+Email ameyjadhav3010@gmail.com
