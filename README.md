@@ -185,6 +185,6 @@ It enables proactive fraud monitoring, reduces financial losses, and strengthens
 
 ## Author
 
-Your Name
+Amey Jadhav
  3rd year Student
 Email ameyjadhav3010@gmail.com
